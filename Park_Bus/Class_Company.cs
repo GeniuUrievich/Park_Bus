@@ -6,9 +6,19 @@ public class Company
     { drivers.Add(driver); }
 
     public void Remove_Driver(Driver driver) { drivers.Remove(driver); }
-    public void Search_Driver(Driver driver)
+    public bool Search_Driver(Driver driver)
     {
         if (driver == null) { Console.WriteLine("Такого водителя нет!"); }
-        Console.WriteLine(drivers.Contains(driver));
+        return drivers.Contains(driver);
+    }
+
+    public Driver ret_driver(string sur,string name, string p)
+    {
+        return drivers.FirstOrDefault(d => d.Surname == sur && d.Name == name && d.Patronymic == p);
+    }
+
+    public void len()
+    {
+        Console.WriteLine(drivers.Count);
     }
 }
