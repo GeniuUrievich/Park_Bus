@@ -25,6 +25,11 @@ public class Park_Bus : Park
     {
         Console.WriteLine(buses.Count);
     }
+
+    public Bus ret_bus(string num)
+    {
+        return buses.FirstOrDefault(d => d.Bus_Number == num);
+    }
 }
 
 public class Route_Bus : Park
@@ -33,6 +38,7 @@ public class Route_Bus : Park
 
     public override void Add_Bus(Bus bus)
     {
+        if (bus.drivers == null) { Console.WriteLine("У автобуса должен быть водитель"); }
         buses.Add(bus);
     }
     public override void Remove_Bus(Bus bus)
