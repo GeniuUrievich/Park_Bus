@@ -1,4 +1,4 @@
-  public class Admin
+public class Admin
 {
     public void Add_Driver_Base(Company company)
     {
@@ -28,7 +28,7 @@
         company.Add_Driver(driver);
 
         if (company.Search_Driver(driver)) { Console.WriteLine("Успешно!!!"); }
-        else{Console.WriteLine("Неудачно");}
+        else { Console.WriteLine("Неудачно"); }
     }
 
     public void Add_Bus(Park_Bus park_bus)
@@ -52,14 +52,14 @@
             c = Console.ReadLine();
         }
 
-        Bus bus = new Bus(a,d,c);
+        Bus bus = new Bus(a, d, c);
         park_bus.Add_Bus(bus);
-        
+
         if (park_bus.Search_Bus(bus)) { Console.WriteLine("Успешно!"); }
         else { Console.WriteLine("Неуспешно!"); }
 
     }
-    
+
     public void Assign_a_driver_admin(Company company, Park_Bus park_bus)
     {
         string a = null, b = null, c = null, d = null;
@@ -83,15 +83,19 @@
             Console.Write("Введите номер автобуса: ");
             d = Console.ReadLine();
         }
-        
+
         Driver driver = company.ret_driver(a, b, c);
         Bus bus = park_bus.ret_bus(d);
-        bus.assign_a_driver(driver, company);
-        if (bus.drivers != null) { Console.WriteLine("Успешно"); }
-        
+        if (driver == null && bus == null) { Console.WriteLine("Водителя нет в базе. Автобуса нет в базе"); }
+        else if (driver == null && bus != null) { Console.WriteLine("Водителя нет в базе."); }
+        else if (driver != null && bus == null) { Console.WriteLine("Автобуса нет в базе."); }
+        else { bus.assign_a_driver(driver, company); 
+            if (bus.drivers != null) { Console.WriteLine("Успешно"); }
+        }
+
     }
 
-   public void send_to_the_route(Park_Bus park_bus, Route_Bus route_bus)
+    public void send_to_the_route(Park_Bus park_bus, Route_Bus route_bus)
     {
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
@@ -100,16 +104,19 @@
             a = Console.ReadLine();
         }
         Bus bus = park_bus.ret_bus(a);
-        route_bus.Add_Bus(bus);
-        park_bus.Remove_Bus(bus);
-
-        if (route_bus.Search_Bus(bus) && park_bus.Search_Bus(bus) == false)
+        if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+        else
         {
-            Console.WriteLine("Успешно!");
+            route_bus.Add_Bus(bus);
+            park_bus.Remove_Bus(bus);
+            if (route_bus.Search_Bus(bus) && park_bus.Search_Bus(bus) == false)
+            {
+                Console.WriteLine("Успешно!");
+            }
         }
     }
 
-   public void return_to_the_park(Park_Bus park_bus, Route_Bus route_bus)
+    public void return_to_the_park(Park_Bus park_bus, Route_Bus route_bus)
     {
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
@@ -118,16 +125,20 @@
             a = Console.ReadLine();
         }
         Bus bus = route_bus.ret_bus(a);
-        route_bus.Remove_Bus(bus);
-        park_bus.Add_Bus(bus);
-
-        if (route_bus.Search_Bus(bus)==false && park_bus.Search_Bus(bus))
+        if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+        else
         {
-            Console.WriteLine("Успешно!");
+            route_bus.Remove_Bus(bus);
+            park_bus.Add_Bus(bus);
+
+            if (route_bus.Search_Bus(bus) == false && park_bus.Search_Bus(bus))
+            {
+                Console.WriteLine("Успешно!");
+            }
         }
     }
 
-   public void remove_the_driver(Company company, Park_Bus park_bus)
+    public void remove_the_driver_bus(Company company, Park_Bus park_bus)
     {
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
@@ -136,11 +147,46 @@
             a = Console.ReadLine();
         }
         Bus bus = park_bus.ret_bus(a);
-        bus.drivers = null;
-
-        if (bus.drivers?.Surname == null)
+        if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+        else
         {
-            Console.WriteLine("Успешно");
+            bus.drivers = null;
+            if (bus.drivers?.Surname == null)
+            {
+                Console.WriteLine("Успешно");
+            }
         }
+    }
+
+    public void info_Bus(Park_Bus park_bus, Route_Bus route_bus)
+    {
+        string a = null;
+        while (string.IsNullOrWhiteSpace(a))
+        {
+            Console.Write("Введите номер автобуса: ");
+            a = Console.ReadLine();
+        }
+        Bus bus;
+        if (park_bus.ret_bus(a) == null)
+        {
+            bus = route_bus.ret_bus(a);
+            if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+            else
+            {
+                bus.info_bus();
+                Console.WriteLine($"Автобус с номером {a} находится на маршруте.");
+            }
+        }
+        else {
+            bus = park_bus.ret_bus(a);
+            if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+            else
+            {
+                bus.info_bus();
+                Console.WriteLine($"Автобус с номером {a} находится в парке на стоянке.");
+            }
+        }
+
+
     }
 }
