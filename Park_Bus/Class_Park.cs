@@ -22,13 +22,8 @@ public class Park_Bus : Park
     }
     public bool Search_Bus(Bus bus)
     {
-        if (bus == null) { Console.WriteLine("Такого водителя нет!"); }
+        if (bus == null) { Console.WriteLine("Такого автобуса нет!"); }
         return buses.Contains(bus);
-    }
-
-        public void len()
-    {
-        Console.WriteLine(buses.Count);
     }
 
     public Bus ret_bus(string num)
@@ -58,9 +53,5 @@ public class Route_Bus : Park
     public Bus ret_bus(string num)
     {
         return buses.FirstOrDefault(d => d.Bus_Number == num);
-    }
-    public void len()
-    {
-        Console.WriteLine(buses.Count);
     }
 }
