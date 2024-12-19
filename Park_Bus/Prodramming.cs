@@ -17,7 +17,12 @@ void program()
         Console.WriteLine("4 Отправить автобус на маршрут");
         Console.WriteLine("5 Отправить автобус в парк");
         Console.WriteLine("6 Снять водителя с автобуса");
-        Console.WriteLine("7 Получить информацию об автобусе");
+        Console.WriteLine("7 Получить информацию об автобусах на стоянке");
+        Console.WriteLine("8 Получить информацию об автобусах на маршруте");
+        Console.WriteLine("9 Получить информацию об автобусе");
+        Console.WriteLine("10 Уволить водителя");
+        Console.WriteLine("11 Получить список водителей");
+        Console.WriteLine("12 Удалить автобус");
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
         {
@@ -62,9 +67,39 @@ void program()
                 Console.Write("Нажмите Enter чтобы продолжить");
                 Console.ReadLine();
                 break;
-            case "7":
+            case "9":
                 Console.Clear();
                 admin.info_Bus(park_Bus,route_bus);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "10":
+                Console.Clear();
+                admin.dissmis_driver(company);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "7":
+                Console.Clear();
+                admin.info_bus_in_park(park_Bus);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "8":
+                Console.Clear();
+                admin.info_bus_in_route(route_bus);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "11":
+                Console.Clear();
+                admin.info_driver(company);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "12":
+                Console.Clear();
+                admin.remove_bus_in_company(park_Bus);
                 Console.Write("Нажмите Enter чтобы продолжить");
                 Console.ReadLine();
                 break;
