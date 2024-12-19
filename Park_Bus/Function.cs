@@ -89,7 +89,7 @@ public class Admin
         if (driver == null && bus == null) { Console.WriteLine("Водителя нет в базе. Автобуса нет в базе"); }
         else if (driver == null && bus != null) { Console.WriteLine("Водителя нет в базе."); }
         else if (driver != null && bus == null) { Console.WriteLine("Автобуса нет в базе."); }
-        else { bus.assign_a_driver(driver, company); 
+        else { bus.assign_a_driver(driver, company);
             if (bus.drivers != null) { Console.WriteLine("Успешно"); }
         }
 
@@ -189,4 +189,79 @@ public class Admin
 
 
     }
+
+    public void dissmis_driver(Company company)
+    {
+        string a = null, b = null, c = null;
+        while (string.IsNullOrWhiteSpace(a))
+        {
+            Console.Write("Введите фамилию водителя: ");
+            a = Console.ReadLine();
+        }
+        while (string.IsNullOrWhiteSpace(b))
+        {
+            Console.Write("Введите имя водителя: ");
+            b = Console.ReadLine();
+        }
+        while (string.IsNullOrWhiteSpace(c))
+        {
+            Console.Write("Введите отчество водителя: ");
+            c = Console.ReadLine();
+        }
+
+        Driver driver = company.ret_driver(a, b, c);
+        if (driver == null) { Console.WriteLine("Такого водителся нет в базе"); }
+        else { company.Remove_Driver(driver); }
+    }
+
+    public void remove_bus_in_company(Park_Bus park_bus) {
+        string a = null;
+        while (string.IsNullOrWhiteSpace(a))
+        {
+            Console.Write("Введите номер автобуса: ");
+            a = Console.ReadLine();
+        }
+        Bus bus = park_bus.ret_bus(a);
+        if (bus == null) { Console.WriteLine("Автобуса нет в базе"); }
+        else
+        {
+            park_bus.Remove_Bus(bus);
+        }
+    }
+
+    public void info_bus_in_park(Park_Bus park_bus)
+    {
+        if (park_bus.Get_Bus().Count == 0) { Console.WriteLine("Автобусов в парке нет!"); }
+        else
+        {
+            { Console.WriteLine("На данный момент в парке находятся автобусы:");
+                foreach (var bus in park_bus.Get_Bus())
+                {
+                    if (bus.drivers == null) { Console.WriteLine($"Автобус с номером {bus.Bus_Number}, водитель не назначен"); }
+                    else { Console.WriteLine($"Автобус с номером {bus.Bus_Number}, водитель: {bus.drivers.Surname} {bus.drivers.Name} {bus.drivers.Patronymic}"); }
+                }
+            }
+        }
+    }
+
+    public void info_bus_in_route(Route_Bus route_bus)
+    {
+        if (route_bus.Get_Bus().Count == 0) { Console.WriteLine("Автобусов на маршруте нет!"); }
+        else
+        {
+            foreach (var bus in route_bus.Get_Bus())
+            {
+                Console.WriteLine($"Автобус с номером {bus.Bus_Number}, водитель: {bus.drivers.Surname} {bus.drivers.Name} {bus.drivers.Patronymic}");
+            }
+        }
+    }
+    
+    public void info_driver(Company company)
+    {
+        foreach(var driver in company.get_driver())
+        {
+            driver.driver_info();
+        }
+    }
 }
+
