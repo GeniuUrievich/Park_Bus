@@ -6,6 +6,8 @@ public abstract class Park
     public abstract void Add_Bus(Bus bus);
     public abstract void Remove_Bus(Bus bus);
 
+    public abstract List<Bus> Get_Bus();
+
 }
 
 public class Park_Bus : Park
@@ -30,6 +32,11 @@ public class Park_Bus : Park
     {
         return buses.FirstOrDefault(d => d.Bus_Number == num);
     }
+
+    public override List<Bus> Get_Bus()
+    {
+        return buses;
+    } 
 }
 
 public class Route_Bus : Park
@@ -53,5 +60,9 @@ public class Route_Bus : Park
     public Bus ret_bus(string num)
     {
         return buses.FirstOrDefault(d => d.Bus_Number == num);
+    }
+    public override List<Bus> Get_Bus()
+    {
+        return buses;
     }
 }
