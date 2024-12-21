@@ -26,7 +26,7 @@
 
     public void driver_info()
     {
-        Console.WriteLine($"{this.Surname} {this.Name} {this.Patronymic} {this.NumberDL}");
+        Console.WriteLine($"Фамилия: {this.Surname} Имя: {this.Name} Отчество: {this.Patronymic} Номер ВУ: {this.NumberDL}");
     }
 }
 
