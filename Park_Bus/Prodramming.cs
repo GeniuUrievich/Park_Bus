@@ -23,6 +23,8 @@ void program()
         Console.WriteLine("10 Уволить водителя");
         Console.WriteLine("11 Получить список водителей");
         Console.WriteLine("12 Удалить автобус");
+        Console.WriteLine("13 Изменить данные водителя");
+        Console.WriteLine("14 Изменить данные водителя");
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
         {
@@ -100,6 +102,18 @@ void program()
             case "12":
                 Console.Clear();
                 admin.remove_bus_in_company(park_Bus);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "13":
+                Console.Clear();
+                admin.change_info_driver(company);
+                Console.Write("Нажмите Enter чтобы продолжить");
+                Console.ReadLine();
+                break;
+            case "14":
+                Console.Clear();
+                admin.change_info_bus(park_Bus);
                 Console.Write("Нажмите Enter чтобы продолжить");
                 Console.ReadLine();
                 break;
