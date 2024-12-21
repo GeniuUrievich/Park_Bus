@@ -1,6 +1,7 @@
 public class Admin
 {
     public void Add_Driver_Base(Company company)
+
     {
         string a = null, b = null, c = null, d = null;
         while (string.IsNullOrWhiteSpace(a))
@@ -261,6 +262,97 @@ public class Admin
         foreach(var driver in company.get_driver())
         {
             driver.driver_info();
+        }
+    }
+
+    public void change_info_driver(Company company)
+    {
+        string a = null, b = null, c = null, d = null;
+        while (string.IsNullOrWhiteSpace(a))
+        {
+            Console.Write("Введите фамилию водителя: ");
+            a = Console.ReadLine();
+        }
+        while (string.IsNullOrWhiteSpace(b))
+        {
+            Console.Write("Введите имя водителя: ");
+            b = Console.ReadLine();
+        }
+        while (string.IsNullOrWhiteSpace(c))
+        {
+            Console.Write("Введите отчество водителя: ");
+            c = Console.ReadLine();
+        }
+
+        Driver driver = company.ret_driver(a,b,c);
+        if (driver == null) { Console.WriteLine("Такого водителя в базе нет"); }
+        else 
+        {
+            while (string.IsNullOrEmpty(d))
+            {
+                Console.Write("Введите поле, которое хотите изменить: ");
+                d = Console.ReadLine();
+            }
+
+            switch (d)
+            {
+                case "Фамилия":
+                    string e = null;
+                    while (string.IsNullOrWhiteSpace(e)) { Console.Write("Введите новое значение: "); e = Console.ReadLine(); }
+                    driver.Surname = e; break;
+                case "Имя":
+                    string g = null;
+                    while (string.IsNullOrWhiteSpace(g)) { Console.Write("Введите новое значение: "); g = Console.ReadLine(); }
+                    driver.Name = g; break;
+                case "Отчество":
+                    string h = null;
+                    while (string.IsNullOrWhiteSpace(h)) { Console.Write("Введите новое значение: "); h = Console.ReadLine(); }
+                    driver.Patronymic = h; break;
+                case "Номер ВУ":
+                    string q = null;
+                    while (string.IsNullOrWhiteSpace(q)) { Console.Write("Введите новое значение: "); q = Console.ReadLine(); }
+                    driver.NumberDL = q; break;
+            }
+            Console.WriteLine("Успешно!");
+        }
+    }
+
+    public void change_info_bus(Park_Bus park_bus)
+    {
+        string a = null, d = null;
+        while (string.IsNullOrWhiteSpace(a))
+        {
+            Console.Write("Введите номер автобуса: ");
+            a = Console.ReadLine();
+        }
+
+        Bus bus = park_bus.ret_bus(a);
+        if (bus == null) { Console.WriteLine("Автобуса нет на стоянке"); }
+        else
+        {
+            while (string.IsNullOrEmpty(d))
+            {
+                Console.Write("Введите поле, которое хотите изменить: ");
+                d = Console.ReadLine();
+            }
+
+            switch (d)
+            {
+                case "Название":
+                    string e = null;
+                    while (string.IsNullOrWhiteSpace(e)) { Console.Write("Введите новое значение: "); e = Console.ReadLine(); }
+                    bus.Bus_Name = e; break;
+                case "Количество сидений":
+                    string g = null;
+                    while (string.IsNullOrWhiteSpace(g)) { Console.Write("Введите новое значение: "); g = Console.ReadLine(); }
+                    bus.Number_of_Seats = int.Parse(g); break;
+                case "Номер автобуса":
+                    string h = null;
+                    while (string.IsNullOrWhiteSpace(h)) { Console.Write("Введите новое значение: "); h = Console.ReadLine(); }
+                    bus.Bus_Number = h; break;
+                
+            }
+            Console.WriteLine("Успешно!");
         }
     }
 }
