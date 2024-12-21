@@ -4,9 +4,9 @@ public class Bus
     private int number_of_seats;
     private string bus_number;
     public Driver? drivers { get; set; }
-    public string Bus_Name { get { return bus_name; } }
-    public int Number_of_Seats { get { return number_of_seats; } }
-    public string Bus_Number { get { return bus_number; } }
+    public string Bus_Name { get { return bus_name; } set { bus_name = value; } }
+    public int Number_of_Seats { get { return number_of_seats; } set { number_of_seats = value; } }
+    public string Bus_Number { get { return bus_number; } set { bus_number = value; } }
     public Bus(string name, int nos, string bn)
     {
         bus_name = name;
