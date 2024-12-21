@@ -24,7 +24,7 @@ void program()
         Console.WriteLine("11 Получить список водителей");
         Console.WriteLine("12 Удалить автобус");
         Console.WriteLine("13 Изменить данные водителя");
-        Console.WriteLine("14 Изменить данные водителя");
+        Console.WriteLine("14 Изменить данные автобуса");
         string a = null;
         while (string.IsNullOrWhiteSpace(a))
         {
